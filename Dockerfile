@@ -7,7 +7,7 @@ RUN apt update && \
 
 # install tools
 RUN add-apt-repository ppa:tomtomtom/yt-dlp && \
-    apt install yt-dlp ffmpeg handbrake-cli jq -y
+    apt install yt-dlp ffmpeg jq moreutils -y
 
 # cleanup
 RUN apt clean && \
@@ -15,7 +15,7 @@ RUN apt clean && \
 
 # set user and working dir
 USER ubuntu
-WORKDIR /download
+WORKDIR /output
 
 # add start script and config files
 COPY start.sh /start.sh

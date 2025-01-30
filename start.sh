@@ -12,25 +12,7 @@ URL=$1
 echo "Downloading content from: $URL"
 yt-dlp $URL
 
-echo "Moving metadata files to /output/"
-mv *.{description,jpg} /output/
-# add formatting to the JSON info file
+# format the JSON info file
 for info in *.json; do
-    jq -M . "$info" > "/output/$info"
+    jq -M . "./$info" | sponge "./$info"
 done
-
-if [[ $2 == "notranscode" ]]; then
-    echo "Moving video file to /output/ untranscoded"
-    mv *.mp4 /output/
-else
-    echo "Transcoding video file to reduce size..."
-    for video in *.mp4; do
-        HandBrakeCLI --preset "Fast 1080p30" \
-                     --previews 1:0 \
-                     --optimize \
-                     --all-audio \
-                     --input "./$video" \
-                     --output "/output/$video"
-        mv "./$video" "/output/$video.orig"
-    done
-fi

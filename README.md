@@ -1,8 +1,6 @@
 # Customized YouTube Downloader
 
-Tool container, uses [`yt-dlp`](https://github.com/yt-dlp/yt-dlp) to download a video or (possibly ongoing/waiting to start) live stream which will then be transcoded using [Handbrake](https://handbrake.fr/) to reduce file size. Original video file will still be kept as `.orig`, since despite the "Fast 1080p30" preset producing decently compact files it may still be smaller.
-
-Transcode is also skippable to save time. You can also skip the included transcode to then transcode the video in the software of your choice on the host machine that may have better hardware acceleration as the containerized tool.
+Tool container, uses [`yt-dlp`](https://github.com/yt-dlp/yt-dlp) to download a video or (possibly ongoing/waiting to start) live stream.
 
 ## Usage
 
@@ -16,8 +14,6 @@ docker build -t youtube-downloader .
 
 # invoke download
 docker run -it --rm -v C:\Repos\yt-downloader\out:/output -v C:\Repos\yt-downloader\cookies:/cookies youtube-downloader <youtube video url>
-# invoke download but skip transcode (results in bigger video file)
-docker run -it --rm -v C:\Repos\yt-downloader\out:/output -v C:\Repos\yt-downloader\cookies:/cookies youtube-downloader <youtube video url> notranscode
 
 # run interactive shell
 docker run -it --rm -v C:\Repos\yt-downloader\out:/output -v C:\Repos\yt-downloader\cookies:/cookies youtube-downloader
