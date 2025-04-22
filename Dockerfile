@@ -9,6 +9,13 @@ RUN apt update && \
 RUN add-apt-repository ppa:tomtomtom/yt-dlp && \
     apt install yt-dlp ffmpeg jq moreutils -y
 
+# install PhantomJS
+RUN apt install wget bzip2 fontconfig -y && \
+    wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2 && \
+    tar xvjf phantomjs-2.1.1-linux-x86_64.tar.bz2 && \
+    mv phantomjs-2.1.1-linux-x86_64/bin/phantomjs /usr/bin/phantomjs && \
+    rm -rf phantomjs*
+
 # cleanup
 RUN apt clean && \
     rm -rf /var/lib/apt/lists/*
