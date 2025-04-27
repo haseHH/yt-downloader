@@ -28,4 +28,4 @@ WORKDIR /output
 COPY start.sh /start.sh
 COPY yt-dlp.conf /etc/yt-dlp/config
 
-ENTRYPOINT [ "/start.sh" ]
+ENTRYPOINT [ "/bin/bash", "/start.sh" ]
